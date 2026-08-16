@@ -62,8 +62,8 @@
       <p class="muted">Each faction's orders come from a language model that only ever sees its own <em>estimates</em>. Leave this off and the factions run on local heuristics — the match still works, it's just quieter.</p>
       <label class="field">
         <span>Pollinations publishable key</span>
-        <input id="keyIn" type="password" placeholder="pk_…" autocomplete="off" spellcheck="false" />
-        <small>Get one at <a href="https://enter.pollinations.ai" target="_blank" rel="noopener">enter.pollinations.ai</a>. Use a <code>pk_</code> key — it's meant for the browser. It stays in this device's localStorage.</small>
+        <input id="keyIn" type="text" placeholder="pk_…" autocomplete="off" spellcheck="false" />
+        <small>A shared <code>pk_</code> key ships with the page, so the commanders talk out of the box — it's rate limited per IP, so it may go quiet under load. Drop your own in (from <a href="https://enter.pollinations.ai" target="_blank" rel="noopener">enter.pollinations.ai</a>) to use your own pollen; it stays in this device's localStorage. Clear the field to go back to the shared one.</small>
       </label>
       <label class="field">
         <span>Model</span>

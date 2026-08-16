@@ -9,14 +9,23 @@ const BASE = 'https://gen.pollinations.ai';
 
 const store = typeof localStorage !== 'undefined' ? localStorage : null;
 
+// Publishable app key. `pk_` keys are the client-side key type — they carry no
+// account access and are rate limited per IP, so shipping one in a static page
+// is what they exist for. Paste your own in the config panel to use your pollen.
+export const DEFAULT_KEY = 'pk_pmLFOIMHnstk6g7i';
+
+const storedEnabled = store?.getItem('sw.enabled');
+
 export const settings = {
-  key: store?.getItem('sw.key') || '',
+  key: store?.getItem('sw.key') || DEFAULT_KEY,
   model: store?.getItem('sw.model') || 'openai-fast',
-  enabled: store?.getItem('sw.enabled') === '1',
+  enabled: storedEnabled === null || storedEnabled === undefined ? true : storedEnabled === '1',
 };
 
 export function saveSettings(patch) {
   Object.assign(settings, patch);
+  // clearing the field falls back to the shipped publishable key
+  if (!settings.key) settings.key = DEFAULT_KEY;
   if (!store) return;
   store.setItem('sw.key', settings.key);
   store.setItem('sw.model', settings.model);

@@ -76,14 +76,19 @@ and where the unit actually is.
 
 ## Running the commanders
 
-Everything works with no key at all — factions fall back to local heuristics
-and the sim is identical, just quieter.
+Model commanders are **on by default** — a publishable key (`pk_…`) ships in
+`src/brains.js`. That's the key type designed for client-side code: it grants no
+account access and is rate limited per IP, so the page can carry one in the open.
+Under load it can run dry, and the factions simply fall back to local heuristics —
+the sim is identical, just quieter.
 
-To let models issue orders:
+To spend your own pollen instead:
 
-1. Grab a **publishable** key (`pk_…`) at [enter.pollinations.ai](https://enter.pollinations.ai).
-   Publishable keys are the ones meant for browsers.
+1. Grab your own publishable key at [enter.pollinations.ai](https://enter.pollinations.ai).
 2. Open **Commanders**, paste it, pick a model, tick the switch.
+
+Clear the field to fall back to the shared key, or untick the switch to run pure
+heuristics.
 
 Every ~6.5s each faction posts its briefing — own units, contact estimates,
 error radii, bearing counts — to `POST /v1/chat/completions` and gets back:

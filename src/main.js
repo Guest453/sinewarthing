@@ -160,7 +160,7 @@ $('cfgSave').onclick = () => {
   const enabled = $('enableIn').checked;
   saveSettings({ key, model: $('modelIn').value, enabled });
   const status = $('cfgStatus');
-  if (enabled && !key) status.textContent = 'Add a key or the factions keep running on heuristics.';
+  if (enabled && !key) status.textContent = 'Saved. Field left empty — falling back to the shared key that ships with the page.';
   else if (enabled && !key.startsWith('pk_')) status.textContent = 'Saved. That key does not look publishable — a pk_ key is safer in a browser.';
   else if (enabled) status.textContent = `Saved. ${$('modelIn').value} takes command on the next order cycle.`;
   else status.textContent = 'Saved. Running on local heuristics.';
