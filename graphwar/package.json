@@ -1,0 +1,10 @@
+{
+  "name": "graphwar-ai",
+  "version": "0.1.0",
+  "description": "Aiming solver for Graphwar: given the board, it writes the function that hits.",
+  "type": "module",
+  "license": "MIT",
+  "bin": { "gw-aim": "./bin/gw-aim.js" },
+  "scripts": { "test": "node --test \"test/*.test.js\"" },
+  "engines": { "node": ">=18" }
+}

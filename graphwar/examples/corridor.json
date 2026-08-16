@@ -1,0 +1,13 @@
+{
+  "shooter": { "x": -20, "y": 0 },
+  "target": { "x": 20, "y": 0 },
+  "soldiers": [
+    { "id": "ally-scout", "x": -9, "y": 0, "team": "mine" }
+  ],
+  "terrain": [
+    { "id": "ceiling", "x": 0, "y": 8, "r": 6 },
+    { "id": "floor", "x": 0, "y": -8, "r": 6 },
+    { "id": "pillar-left", "x": -7, "y": 0, "r": 2 },
+    { "id": "pillar-right", "x": 7, "y": 0, "r": 2 }
+  ]
+}

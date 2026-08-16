@@ -125,6 +125,12 @@ won't work — ES modules need a real origin.
 Push, then **Settings → Pages → Source: GitHub Actions**. The workflow in
 `.github/workflows/pages.yml` publishes the repo root on every push to `main`.
 
+## Also in this repo
+
+[`graphwar/`](graphwar/README.md) — an aiming solver for
+[Graphwar](http://www.graphwar.com/). Describe the board, get back the function
+to type. Unrelated to the sim above; no dependencies, `cd graphwar && npm test`.
+
 ## Files
 
 ```
