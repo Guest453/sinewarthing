@@ -1,0 +1,212 @@
+:root {
+  --ink: #080d1a;
+  --panel: #0f1729;
+  --panel-2: #141e35;
+  --rule: rgba(126, 156, 210, 0.16);
+  --text: #e2ecff;
+  --muted: #7f8fb0;
+  --peace: #4fd6c8;
+  --rogue: #ff4d6d;
+  --pro: #ffb03a;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr 336px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "bar bar" "stage rail";
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ---- bar ---- */
+.bar {
+  grid-area: bar;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--rule);
+  background: linear-gradient(180deg, #0d1526, #0a1120);
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+
+.brand h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0;
+}
+
+.brand p { margin: 0; color: var(--muted); font-size: 11px; }
+
+.wave {
+  width: 34px; height: 16px;
+  background:
+    radial-gradient(circle at 20% 50%, var(--peace) 1.6px, transparent 2px),
+    radial-gradient(circle at 50% 20%, var(--pro) 1.6px, transparent 2px),
+    radial-gradient(circle at 80% 80%, var(--rogue) 1.6px, transparent 2px);
+  align-self: center;
+}
+
+.controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.btn {
+  font: inherit;
+  padding: 7px 13px;
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+  letter-spacing: 0.04em;
+}
+.btn:hover { border-color: rgba(126, 156, 210, 0.4); }
+.btn:focus-visible { outline: 2px solid var(--pro); outline-offset: 2px; }
+.btn.primary { background: #1d2b4a; border-color: rgba(126, 156, 210, 0.36); }
+.btn.ghost { background: transparent; }
+
+.speed { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; }
+.speed input { width: 96px; accent-color: var(--pro); }
+.speed output { color: var(--text); min-width: 34px; }
+
+/* ---- stage ---- */
+.stage { grid-area: stage; position: relative; min-width: 0; min-height: 0; }
+#field { width: 100%; height: 100%; display: block; }
+
+.overlay-toggles {
+  position: absolute;
+  left: 14px; bottom: 12px;
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  padding: 8px 12px;
+  background: rgba(10, 17, 32, 0.82);
+  border: 1px solid var(--rule);
+  font-size: 11px;
+  color: var(--muted);
+}
+.overlay-toggles label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.overlay-toggles input { accent-color: var(--pro); }
+.overlay-toggles select {
+  font: inherit; font-size: 11px;
+  background: var(--panel-2); color: var(--text);
+  border: 1px solid var(--rule); padding: 3px 6px;
+}
+
+.verdict {
+  position: absolute; inset: auto 0 50% 0;
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 26px; letter-spacing: 0.18em;
+  text-shadow: 0 0 24px currentColor;
+  pointer-events: none;
+}
+
+/* ---- rail ---- */
+.rail {
+  grid-area: rail;
+  border-left: 1px solid var(--rule);
+  background: var(--panel);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+}
+
+.cards { padding: 12px; display: grid; gap: 10px; }
+
+.card {
+  border: 1px solid var(--rule);
+  border-left-width: 3px;
+  padding: 10px 12px;
+  background: var(--panel-2);
+}
+.card h3 {
+  margin: 0 0 2px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px; letter-spacing: 0.12em;
+}
+.card .row { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 11px; }
+.card .line { margin: 7px 0 0; font-size: 11.5px; line-height: 1.45; }
+.card .src { color: var(--muted); font-size: 10px; letter-spacing: 0.06em; }
+
+.bars { display: flex; gap: 3px; margin-top: 7px; }
+.bars i { height: 4px; flex: 1; background: rgba(255,255,255,0.09); }
+.bars i.on { background: currentColor; }
+
+.feed { border-top: 1px solid var(--rule); display: grid; grid-template-rows: auto minmax(0,1fr); min-height: 0; }
+.feed h2 {
+  margin: 0; padding: 10px 12px 6px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px; letter-spacing: 0.2em; color: var(--muted); font-weight: 500;
+}
+#log { list-style: none; margin: 0; padding: 0 12px 12px; overflow-y: auto; min-height: 0; }
+#log li {
+  padding: 5px 0 5px 9px;
+  border-left: 2px solid currentColor;
+  margin-bottom: 5px;
+  font-size: 11.5px; line-height: 1.4;
+}
+#log li span { color: var(--text); }
+#log li b { font-weight: 600; letter-spacing: 0.08em; }
+
+/* ---- config ---- */
+.cfg {
+  position: fixed; inset: 0;
+  background: rgba(4, 8, 17, 0.78);
+  display: grid; place-items: center;
+  padding: 20px; z-index: 20;
+}
+.cfg-inner {
+  width: min(520px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  padding: 22px;
+  max-height: 90vh; overflow-y: auto;
+}
+.cfg h2 { font-family: "Space Grotesk", sans-serif; font-size: 15px; letter-spacing: 0.12em; margin: 0 0 8px; }
+.muted { color: var(--muted); line-height: 1.6; font-size: 12px; }
+.field { display: grid; gap: 5px; margin: 16px 0; }
+.field span { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); }
+.field input, .field select {
+  font: inherit; padding: 8px 10px;
+  background: var(--ink); color: var(--text);
+  border: 1px solid var(--rule);
+}
+.field small { color: var(--muted); font-size: 10.5px; line-height: 1.5; }
+.field a { color: var(--peace); }
+.switch { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.switch input { accent-color: var(--pro); width: 15px; height: 15px; }
+.cfg-actions { display: flex; gap: 10px; margin-top: 20px; }
+.status { min-height: 16px; margin: 10px 0 0; font-size: 11px; color: var(--pro); }
+
+@media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 46vh 1fr;
+    grid-template-areas: "bar" "stage" "rail";
+    height: auto; min-height: 100dvh;
+  }
+  .rail { border-left: 0; border-top: 1px solid var(--rule); }
+  #log { max-height: 30vh; }
+  .brand p { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

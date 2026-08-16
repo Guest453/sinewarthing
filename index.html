@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SINE WARS — bearing-only AI skirmish</title>
+<meta name="description" content="Three AI factions hunt each other with nothing but noisy bearings, sine-modulated movement and least-squares triangulation. Commanders run on the Pollinations API." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📡</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+<div class="app">
+
+  <header class="bar">
+    <div class="brand">
+      <span class="wave" aria-hidden="true"></span>
+      <h1>SINE&nbsp;WARS</h1>
+      <p>bearing-only skirmish · nobody knows where anybody is</p>
+    </div>
+    <div class="controls">
+      <button id="playBtn" class="btn primary">Pause</button>
+      <button id="resetBtn" class="btn">New match</button>
+      <label class="speed">
+        Speed
+        <input id="speed" type="range" min="0.25" max="3" step="0.25" value="1" />
+        <output id="speedOut">1.0×</output>
+      </label>
+      <button id="cfgBtn" class="btn ghost" aria-expanded="false">Commanders</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <canvas id="field" aria-label="tactical field"></canvas>
+    <div class="overlay-toggles">
+      <label><input type="checkbox" id="tglBeliefs" checked /> Belief rings</label>
+      <label><input type="checkbox" id="tglTethers" checked /> Error tethers</label>
+      <label><input type="checkbox" id="tglBearings" /> Raw bearings</label>
+      <select id="focusSel" aria-label="show beliefs for">
+        <option value="">All factions</option>
+        <option value="peace">CONCORD only</option>
+        <option value="rogue">NULLSET only</option>
+        <option value="pro">MERIDIAN only</option>
+      </select>
+    </div>
+    <div id="verdict" class="verdict" hidden></div>
+  </main>
+
+  <aside class="rail">
+    <section id="cards" class="cards"></section>
+    <section class="feed">
+      <h2>Comms</h2>
+      <ol id="log"></ol>
+    </section>
+  </aside>
+
+  <div id="cfg" class="cfg" hidden>
+    <div class="cfg-inner">
+      <h2>Commander models</h2>
+      <p class="muted">Each faction's orders come from a language model that only ever sees its own <em>estimates</em>. Leave this off and the factions run on local heuristics — the match still works, it's just quieter.</p>
+      <label class="field">
+        <span>Pollinations publishable key</span>
+        <input id="keyIn" type="password" placeholder="pk_…" autocomplete="off" spellcheck="false" />
+        <small>Get one at <a href="https://enter.pollinations.ai" target="_blank" rel="noopener">enter.pollinations.ai</a>. Use a <code>pk_</code> key — it's meant for the browser. It stays in this device's localStorage.</small>
+      </label>
+      <label class="field">
+        <span>Model</span>
+        <select id="modelIn"></select>
+        <small id="modelNote">openai-fast is the cheapest one that reliably returns JSON.</small>
+      </label>
+      <label class="switch">
+        <input id="enableIn" type="checkbox" />
+        <span>Let models issue orders</span>
+      </label>
+      <div class="cfg-actions">
+        <button id="cfgSave" class="btn primary">Save</button>
+        <button id="cfgClose" class="btn ghost">Close</button>
+      </div>
+      <p id="cfgStatus" class="status" role="status"></p>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
